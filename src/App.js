@@ -5,9 +5,9 @@ import { useState } from "react";
 
 function App() {
   const [account, setAccount] = useState("");
-  const [data, setData] = useState("");
+  const [newData, setNewData] = useState([]);
  
-  console.log(data);
+  console.log(newData); 
 
  
 
@@ -16,11 +16,11 @@ function App() {
     const options = { method: "GET", headers: { accept: "application/json" } };
 
     
-      fetch("https://api.opensea.io/api/v1/asset/0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb/1/?include_orders=false", options)
+      fetch("https://api.opensea.io/api/v1/asset_contract/0x06012c8cf97bead5deae237070f9587f8e7a266d", options)
     
       .then((response) => response.json())
       .then((response) => {
-        setData(response.id);
+        setNewData(response.collection);
          console.log(response)
         })
       .catch((err) => console.error(err));
@@ -38,16 +38,13 @@ function App() {
       <p>{account}</p>
       <button onClick={metaConnect}>Connect</button>
       {/* <button onClick={getNft}>Get NFT Data</button> */}
+      {Object.keys(newData).map((key) => (
+        <div> 
+          <h3>{key}: {newData.name}</h3>
+        </div>
       
-      {Object.entries(data).map(([key, val], i) => {
-        return (
-          
-            <p key={i}>
-             {key} : {val}
-            </p>
-          
-        )
-      })}
+      ))}
+     
     </div>
   );
 }
