@@ -20,7 +20,7 @@ function App() {
     
       .then((response) => response.json())
       .then((response) => {
-        setNewData(response.collection);
+        setNewData(response.collection.name);
          console.log(response)
         })
       .catch((err) => console.error(err));
@@ -40,7 +40,7 @@ function App() {
       {/* <button onClick={getNft}>Get NFT Data</button> */}
       {Object.keys(newData).map((key) => (
         <div> 
-          <h3>{key}: {newData.name}</h3>
+          <h3>{key}: {newData[key]}</h3>
         </div>
       
       ))}
