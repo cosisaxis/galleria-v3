@@ -20,7 +20,7 @@ function App() {
     
       .then((response) => response.json())
       .then((response) => {
-        setNewData(response.collection.name);
+        setNewData(response.collection);
          console.log(response)
         })
       .catch((err) => console.error(err));
@@ -38,12 +38,16 @@ function App() {
       <p>{account}</p>
       <button onClick={metaConnect}>Connect</button>
       {/* <button onClick={getNft}>Get NFT Data</button> */}
-      {Object.keys(newData).map((key) => (
+      {/* {Object.keys(newData).map((key) => (
         <div> 
-          <h3>{key}: {newData[key]}</h3>
+          <h3>{key}:{newData}</h3>
         </div>
       
-      ))}
+      ))} */}
+      <div>
+        <h4>{JSON.stringify(newData.name)}</h4>
+        <h4>{JSON.stringify(newData.description)}</h4>
+      </div>
      
     </div>
   );
